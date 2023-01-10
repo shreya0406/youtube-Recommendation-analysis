@@ -1,16 +1,10 @@
-
+#import libraries
 library(ggplot2)
 library(tidyverse)
 library(plotrix)
-
 library(corrplot)
-
 library(ggdendro)
-
 library(ggrepel)
-
-
-library(ggplot2)
 library(knitr)
 library(dplyr)
 library(GGally)
@@ -18,7 +12,6 @@ library(lubridate)
 library(gridExtra)
 library(psych)
 library(memisc)
-
 
 
 #Load the Data
@@ -41,11 +34,13 @@ str(YtInd)
 
 head(YtInd)
 
+#plotting graphs
 plot(YtInd$publish_time)
 plot(YtInd$publish_time, type = "b")
 v2 = sort(YtInd$publish_time)
 plot(v2)
 
+#boxplot
 boxplot()
 summary(YtInd$likes)
 boxplot(YtInd$likes)
@@ -64,7 +59,7 @@ ggplot(aes(x=publish_time),data=YtInd)+geom_bar()
 
 table(YtInd$publish_time)
 
-
+#histogram
 ggplot(aes(likes),data=YtInd[!is.na(YtInd$likes),])+
   geom_histogram(binwidth=100000)+scale_x_continuous(
     breaks=seq(0,50,500))+
@@ -96,6 +91,7 @@ ggplot(aes(x=comment_count),data=YtInd)+
 
 summary(YtInd$comment_count)
 
+#bar graph
 barplot(YtInd$likes)
 
 
@@ -103,17 +99,14 @@ hist(YtInd$likes , breaks = 5)
 hist( YtInd$likes, breaks = 3)
 hist(YtInd$likes , breaks = 10)
 
+#pie chart
 slices <- c(10, 12,4, 16, 8)
 lbls <- c("likes", "dislikes", "comment_count", "category_id", "views")
 pie(slices, labels = lbls, main="Pie Chart of Trending YouTube Video")
 
 
 
-
-
-
-
-
+#graphs & analysis
 sp1 <- youtube %>% 
   select(channel_title,views) %>% 
   group_by(channel_title) %>%
